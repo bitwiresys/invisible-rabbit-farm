@@ -1,5 +1,11 @@
 # ПУХ — Пассивный Учёт Хвостатых
 
+[![CI](https://github.com/bitwiresys/invisible-rabbit-farm/actions/workflows/ci.yml/badge.svg)](https://github.com/bitwiresys/invisible-rabbit-farm/actions/workflows/ci.yml)
+
+**Живое демо: [invisible-rabbit-farm.vercel.app](https://invisible-rabbit-farm.vercel.app/)**
+
+![Демо интерфейса](docs/demo.gif)
+
 Мини-приложение «Ферма невидимых кроликов»: детектор, который по косвенным сигналам
 (пропала морковка, новая ямка, датчик движения, шуршание, следы) оценивает, сколько
 невидимых кроликов на ферме, насколько система уверена в оценке, какие сигналы
