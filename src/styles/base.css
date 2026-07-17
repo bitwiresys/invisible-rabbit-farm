@@ -1,0 +1,375 @@
+/* ============================================================
+   Базовые стили: reset, типографика, общие элементы
+   (кнопки, поля, слайдеры, тумблеры, пилюли, тултипы).
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: radial-gradient(circle at 18% 0%, #1a1a1a, #080808 34%, #050505);
+  background-color: var(--bg-0);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  min-width: 320px;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Focus-ring --info на всех интерактивах */
+:focus-visible {
+  outline: 2px solid var(--info);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- Кнопки ---------- */
+
+.btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: var(--space-2) var(--space-3);
+  min-height: 32px;
+  cursor: pointer;
+  transition: border-color var(--ease), background var(--ease), color var(--ease);
+}
+
+.btn:hover {
+  border-color: var(--line-strong);
+  background: #1c1c1c;
+}
+
+.btn--ghost {
+  background: none;
+  border-color: transparent;
+  color: var(--muted);
+}
+
+.btn--ghost:hover {
+  background: var(--panel-2);
+  border-color: transparent;
+  color: var(--ink);
+}
+
+.btn--icon {
+  padding: var(--space-1);
+  min-width: 28px;
+  min-height: 28px;
+}
+
+.btn--pill {
+  border-radius: var(--radius-pill);
+}
+
+/* ---------- Поля форм ---------- */
+
+.input,
+.select {
+  appearance: none;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--text-sm);
+  padding: 6px 9px;
+  width: 100%;
+  min-width: 0;
+  transition: border-color var(--ease);
+}
+
+.input:hover,
+.select:hover {
+  border-color: var(--line-strong);
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: var(--info);
+}
+
+.select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23a8a8a8' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 26px;
+  cursor: pointer;
+}
+
+.input--num {
+  width: 58px;
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.input--time {
+  width: 92px;
+  font-family: var(--font-mono);
+}
+
+input[type='time'].input::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
+
+input[type='number'].input::-webkit-inner-spin-button {
+  opacity: 1;
+}
+
+/* ---------- Слайдеры ---------- */
+
+.slider {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--line);
+  outline: none;
+  cursor: pointer;
+  min-height: 20px;
+  background-clip: content-box;
+  padding: 8px 0;
+}
+
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: grab;
+  margin-top: 0;
+  transition: transform var(--ease);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.15);
+}
+
+.slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+}
+
+.slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: none;
+  cursor: grab;
+}
+
+.slider:focus-visible {
+  outline: 2px solid var(--info);
+  outline-offset: 2px;
+}
+
+/* ---------- Тумблер ---------- */
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.toggle__track {
+  position: absolute;
+  inset: 0;
+  background: var(--line);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background var(--ease);
+}
+
+.toggle__track::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 3px;
+  top: 3px;
+  background: var(--muted);
+  border-radius: 50%;
+  transition: transform var(--ease), background var(--ease);
+}
+
+.toggle input:checked + .toggle__track {
+  background: var(--accent);
+}
+
+.toggle input:checked + .toggle__track::before {
+  transform: translateX(16px);
+  background: var(--bg-0);
+}
+
+.toggle input:focus-visible + .toggle__track {
+  outline: 2px solid var(--info);
+  outline-offset: 2px;
+}
+
+/* ---------- Пилюли ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line);
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.pill--accent {
+  background: var(--accent-dim);
+  border-color: var(--accent-border);
+  color: var(--accent);
+}
+
+button.pill {
+  cursor: pointer;
+  background: none;
+  font: inherit;
+  font-size: var(--text-xs);
+}
+
+button.pill--accent {
+  background: var(--accent-dim);
+}
+
+/* ---------- Tooltip (CSS, по hover и focus) ---------- */
+
+.tip {
+  position: relative;
+}
+
+.tip:hover::after,
+.tip:focus-visible::after {
+  content: attr(data-tip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 0;
+  background: #1c1c1c;
+  border: 1px solid var(--line);
+  color: var(--ink);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  line-height: 1.45;
+  padding: 6px 9px;
+  border-radius: 8px;
+  width: max-content;
+  max-width: 250px;
+  z-index: 20;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+}
+
+/* ---------- Empty state ---------- */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-state__title {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.empty-state__hint {
+  font-size: var(--text-sm);
+  max-width: 340px;
+}
+
+/* ---------- Вспышка изменившегося значения (600ms) ---------- */
+
+@keyframes value-flash {
+  from {
+    box-shadow: inset 0 -2px 0 0 var(--accent);
+  }
+  to {
+    box-shadow: inset 0 -2px 0 0 transparent;
+  }
+}
+
+.flash {
+  animation: value-flash 600ms ease-out;
+}
+
+/* ---------- Утилиты ---------- */
+
+.muted {
+  color: var(--muted);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.chevron {
+  transition: transform var(--ease);
+}
+
+.chevron--open {
+  transform: rotate(180deg);
+}
+
+/* ---------- Reduced motion: остаются только opacity-переходы ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-property: opacity !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
